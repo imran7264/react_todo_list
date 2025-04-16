@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+.montserrat-primary {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+.todo-container {
+  max-width: 800px;
+  height: 630px;
+  width: 800px;
+  font-family: "Montserrat", sans-serif;
+}
+.dark-mode {
+  background-color: black;
+  color: white;
+} 
+.dark-mode .main-container {
+  background-color: #473e3e;
+  border-radius: 4px;
+}
+.dark-mode .todo-container {
+  background-color: black;
+}
+.dark-mode .todo-container input {
+  background-color: #333;
+  color: white;
+}
+.dark-mode .tasks {
+  background-color: #333;
+}
+
+.light-mode {
+  background-color: white;
+  color: black !important;
+}
+.tasks {
+  transition: 0.6s linear;
+ 
+}
+
+.light-mode .tasks {
+  background-color: aliceblue !important;
+  color: black;
+}
+.light-mode .tasks:hover {
+  background-color: azure !important;
+}
+.toggle-btn {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  /* background: transparent; */
+  border: none;
+  color: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 9999px;
+  transition: background 0.2s;
+}
+input {
+  color: black;
+}
+
+@media screen and (max-width: 576px) {
+  .main-container {
+    padding: 0px;
+    height: 680px;
+  }
+  .todo-container {
+    padding: 1rem 7px;
+    height: 700px !important;
+  } 
+   .todo-container .search-container {
+    width: 100%;
+    text-align: right;
+   }
+  
+}
+
+@media screen and (max-width: 872px) { 
+  .todo-container {
+    width: 100vw;
+  }
+  
+}
