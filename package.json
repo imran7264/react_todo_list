@@ -1,12 +1,9 @@
 {
-  "homepage": "https://imran7264.github.io/react_todo_list/",
   "name": "todo-list",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
