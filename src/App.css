@@ -12,6 +12,15 @@
   width: 800px;
   font-family: "Montserrat", sans-serif;
 }
+.dark-mode .todo-container h1 {
+  color: white;
+}
+.todo-container .tasks {
+  transition: 0.1s ease-in;
+}
+.todo-container .tasks:hover {
+  transform: scale(1.01);
+}
 .dark-mode {
   background-color: black;
   color: white;
@@ -35,10 +44,6 @@
   background-color: white;
   color: black !important;
 }
-.tasks {
-  transition: 0.6s linear;
- 
-}
 
 .light-mode .tasks {
   background-color: aliceblue;
@@ -46,13 +51,12 @@
 }
 
 .toggle-btn {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  /* background: transparent; */
+  position: absolute;
+  top: 10px;
+  right: 15px;
   border: none;
   color: inherit;
-  font-size: 1rem;
+  font-size: 16px;
   cursor: pointer;
   padding: 0.5rem;
   border-radius: 9999px;
@@ -71,6 +75,12 @@ input {
     padding: 1rem 7px;
     height: 700px !important;
   } 
+   .todo-container h1 {
+    font-size: 20px;
+  }
+  .todo-container .toggle-btn {
+    font-size: 12px;
+  }
    .todo-container .search-container {
     width: 100%;
     text-align: right;

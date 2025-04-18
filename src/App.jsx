@@ -201,16 +201,11 @@ function App() {
       <div className="bg-white p-4 rounded-2xl shadow-2xl overflow-auto relative todo-container">
         <ToastContainer position='top-right' autoClose={2000} />
         <div className="m-2 text-right">
-          <h1 className="text-blue-600 text-xl font-bold mb-4 text-center">My Todo List</h1>
+          <h1 className="text-blue-600 text-2xl font-bold mb-4 text-center">My Todo List</h1>
 
           <Button
-            className={'bg-blue-300 px-1 py-1 rounded-md text-sm shadow-md scale-105 toggle-btn'}
+            className={'bg-blue-300 rounded-md text-sm shadow-md toggle-btn'}
             onClick={() => setDarkMode(!darkMode)}
-            style={{
-              position: 'absolute',
-              top: 10,
-              right: 15
-            }}
           >
             {darkMode ? <FaSun /> : <FaMoon color='black' />}
           </Button>
