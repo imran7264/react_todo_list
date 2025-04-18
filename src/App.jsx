@@ -62,7 +62,7 @@ function App() {
     }
 
     const isDuplicateTask = tasks.some(task => task.name.trim().toLocaleLowerCase() === name.trim().toLocaleLowerCase());
-    if(isDuplicateTask) {
+    if (isDuplicateTask) {
       toast.error('Task Already Exist');
       return
     }
@@ -120,7 +120,15 @@ function App() {
   const handleEditTask = (todo) => {
     const editedTask = tasks.find(t => t.name === todo);
     const { name, description } = editedTask;
-    if (editedTask) {
+    const cheIfCompleted = tasks.find(task => task.name === todo && task.completed);
+    if (cheIfCompleted) {
+      toast.error("Can't edit completed task");
+      console.log(cheIfCompleted)
+      return;
+     
+    } 
+    
+    else if (editedTask) {
       setName(name)
       setDescription(description)
       setEditTaskName(todo);
@@ -210,25 +218,15 @@ function App() {
 
         <form onSubmit={(e) => {
           e.preventDefault();
-
-
         }}>
-          <div className="flex mb-2">
 
+          <div className="flex mb-2">
             <Input
               value={name}
               onChange={handlSetName}
-              className='flex-grow border border-gray-300 rounded-l-lg p-2 focus:outline-none'
+              className='flex-grow border border-gray-300 rounded-lg p-2 focus:outline-none'
               placeholder={'Enter Task Name'}
             />
-
-            <Button
-              type='submit'
-              className={'bg-blue-500 text-white px-6 rounded-r-lg hover:bg-blue-600 transition'}
-              onClick={handleAddTask}
-            >
-              {editTaskName ? 'Save' : 'Add'}
-            </Button>
           </div>
 
           <div className="flex mb-4">
@@ -236,10 +234,20 @@ function App() {
               value={description}
               onChange={handlSetDescription}
               placeholder={'Enter Task Description'}
-              className={'flex-auto border border-gray-300 rounded-lg p-2 focus:outline-none'}
+              className={'flex-auto border border-gray-300 rounded-l-lg p-2 focus:outline-none'}
             />
+
+            <Button
+              type='submit'
+              className={'bg-blue-500 text-white px-6 border rounded-r-lg hover:bg-blue-600 transition'}
+              onClick={handleAddTask}
+            >
+              {editTaskName ? 'Save' : 'Add'}
+            </Button>
           </div>
         </form>
+
+        {tasks.length > 0 && (
 
         <div className="flex justify-between flex-wrap">
           <div className="flex gap-2 mb-3">
@@ -270,16 +278,17 @@ function App() {
             />
           </div>
         </div>
+         )}
 
         {filterTask.filter(t => t.name.toLocaleLowerCase().includes(searchTask.toLocaleLowerCase()))
           .slice(((pagNo - 1) * RECORDS_PER_PAGE), pagNo * RECORDS_PER_PAGE)
           .map(({ name, description, completed, edited, day, dayName, time, month, year }) => (
 
 
-            <div className="text-white text-start px-6 shadow-m transition m-2 p-2 rounded-lg tasks"
+            <div className="text-white text-start px-6 shadow-m transition my-2 p-2 rounded-lg tasks"
               key={uuidv4()}
               style={{
-                background: completed ? 'rgba(62, 106, 237, 0.8)' : '#333'
+                background: completed ? 'rgba(62, 106, 237, 0.8)' : ''
               }}
             >
               <div className="">
@@ -315,10 +324,8 @@ function App() {
 
                   <Button className='text-white text-md px-1 align-middle rounded-sm max-w-sm transition'
                     onClick={() => handleEditTask(name)}
-                    disabled={completed}
-                    style={{
-                      cursor: completed ? 'not-allowed' : 'pointer'
-                    }}
+                    
+    
                   >
                     <FaEdit className='text-cyan-400' title={completed ? "Can't edit Completed task" : "Edit"} />
                   </Button>
@@ -348,7 +355,7 @@ function App() {
                   </span>
                 )}
                 {completed && (
-                  <span className='ml-2 text-blue-300 text-xs italic font-semibold'>
+                  <span className='ml-2 text-green-400 text-xs italic font-semibold'>
                     (Completed)
                   </span>
                 )}
@@ -359,6 +366,7 @@ function App() {
 
 
       </div>
+      {tasks.length > 4 && (
       <div className="mt-2 inline-flex">
         {Array.from({ length: totalPage }, (v, i) => {
           const page = i + 1;
@@ -377,6 +385,7 @@ function App() {
           );
         })}
       </div>
+      )}
     </div>
 
 

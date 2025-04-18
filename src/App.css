@@ -41,12 +41,10 @@
 }
 
 .light-mode .tasks {
-  background-color: aliceblue !important;
+  background-color: aliceblue;
   color: black;
 }
-.light-mode .tasks:hover {
-  background-color: azure !important;
-}
+
 .toggle-btn {
   position: fixed;
   top: 1rem;
