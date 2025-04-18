@@ -14,7 +14,15 @@ function App() {
 
   const [tasks, setTasks] = useState(() => {
     const storedTask = localStorage.getItem('myTasks');
-    return JSON.parse(storedTask);
+    let parsedTasks = [];
+    try {
+      parsedTasks = JSON.parse(storedTask || []);
+    } catch (error) {
+      console.log(error)
+      parsedTasks = [];
+    }
+
+    return parsedTasks;
   });
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
