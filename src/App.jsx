@@ -7,6 +7,7 @@ import './App.css';
 import ConfirmDialog from './components/ConfirmDialog';
 import Input from './components/input';
 import Button from './components/button';
+import { v4 as uuidv4 } from 'uuid';
 
 const RECORDS_PER_PAGE = 4;
 
@@ -54,11 +55,20 @@ function App() {
   }
 
   const handleAddTask = () => {
+
     if (!name || !description) {
       toast.error('Kindly enter task name and description')
       return;
     }
+
+    const isDuplicateTask = tasks.some(task => task.name.trim().toLocaleLowerCase() === name.trim().toLocaleLowerCase());
+    if(isDuplicateTask) {
+      toast.error('Task Already Exist');
+      return
+    }
+
     const { time, day, dayName, month, year } = getFormattedTime();
+
     if (editTaskName) {
       const updated = tasks.map(task =>
         task.name === editTaskName
@@ -267,7 +277,7 @@ function App() {
 
 
             <div className="text-white text-start px-6 shadow-m transition m-2 p-2 rounded-lg tasks"
-              key={name}
+              key={uuidv4()}
               style={{
                 background: completed ? 'rgba(62, 106, 237, 0.8)' : '#333'
               }}
